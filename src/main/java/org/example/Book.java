@@ -46,6 +46,6 @@ public abstract class Book {
         this.isRead = isRead;
     }
 
-    // Abstract method for subclasses to implement additional details
+    
     public abstract String getDetails();
 }
