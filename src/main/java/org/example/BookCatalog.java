@@ -6,10 +6,17 @@ import java.util.Comparator;
 import java.util.List;
 
 public class BookCatalog {
+    private static BookCatalog instance;
     private List<Book> books;
 
-    public BookCatalog() {
-        this.books = new ArrayList<>();
+    private BookCatalog() {
+        books = new ArrayList<>();
+    }
+    public static BookCatalog getInstance(){
+        if(instance == null) {
+            instance = new BookCatalog();
+        }
+        return instance;
     }
 
     public void addBook(Book book) {

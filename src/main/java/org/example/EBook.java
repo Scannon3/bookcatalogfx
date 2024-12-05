@@ -18,6 +18,6 @@ public class EBook extends Book {
 
     @Override
     public String getDetails() {
-        return "EBook - File Size: " + fileSize + " MB";
+        return fileSize + "MB";
     }
 }

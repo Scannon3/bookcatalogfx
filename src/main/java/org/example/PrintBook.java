@@ -18,6 +18,6 @@ public class PrintBook extends Book {
 
     @Override
     public String getDetails() {
-        return "PrintBook - Pages: " + pages;
+        return pages+" pages";
     }
 }

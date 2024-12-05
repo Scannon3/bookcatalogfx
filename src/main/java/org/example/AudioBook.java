@@ -18,6 +18,6 @@ public class AudioBook extends Book {
 
     @Override
     public String getDetails() {
-        return "AudioBook - Duration: " + durationMinutes + " minutes";
+        return durationMinutes+" min" ;
     }
 }

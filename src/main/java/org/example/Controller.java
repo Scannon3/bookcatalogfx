@@ -19,7 +19,7 @@ public class Controller {
     private Stage stage;
     private Scene scene;
     private FXMLLoader loader;
-    private BookCatalog books = new BookCatalog();
+    private BookCatalog books = BookCatalog.getInstance();
 
 
     @FXML
@@ -97,6 +97,8 @@ public class Controller {
 
 
             books.addBook(new PrintBook(title, author, isbn, pages));
+            System.out.println(books.getBooks().size());
+
 
 
             printTitleField.clear();
@@ -204,6 +206,8 @@ public class Controller {
     }
 
     public void displayBooksTest() {
+        books.addBook(new PrintBook("222","2222","2222",2222));
+
         System.out.println(books.getBooks().size());
     }
 
