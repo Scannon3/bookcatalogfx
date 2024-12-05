@@ -19,9 +19,9 @@ public class Controller {
     private Stage stage;
     private Scene scene;
     private FXMLLoader loader;
-    private BookCatalog books = BookCatalog.getInstance();
+    private BookCatalog books = BookCatalog.getInstance(); //uses singleton so books always has the up to date catalog
 
-
+/*corresponds to the fxid of the controls in the scene3(displaybooks) fxml file*/
     @FXML
     private TableView<Book> bookTableView;
     @FXML
@@ -34,12 +34,12 @@ public class Controller {
     private TableColumn<Book, String> detailsColumn;
 
 
-
+/*coresponds to the fxid of the controls in scene 2(addbook) fxml file*/
     @FXML
     private TextField printTitleField, printAuthorField, printIsbnField, printPagesField,
             audioTitleField, audioAuthorField, audioIsbnField, audioDurationField,
             ebookTitleField, ebookAuthorField, ebookIsbnField, ebookSizeField;
-
+/*scene one is the main scene*/
     public void switchScene1(ActionEvent event) throws IOException {
         loader = new FXMLLoader(getClass().getResource("/org/example/scene1.fxml"));
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -47,7 +47,7 @@ public class Controller {
         stage.setScene(scene);
         stage.show();
     }
-
+/*scene two is the addbook scene*/
     public void switchScene2(ActionEvent event) throws IOException {
         loader = new FXMLLoader(getClass().getResource("/org/example/scene2.fxml"));
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -55,6 +55,7 @@ public class Controller {
         stage.setScene(scene);
         stage.show();
     }
+    /*scene three is the display books scene*/
     public void switchScene3(ActionEvent event) throws IOException {
         loader = new FXMLLoader(getClass().getResource("/org/example/scene3.fxml"));
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -65,7 +66,9 @@ public class Controller {
         stage.show();
 
     }
-
+/*these function corresponds to the button to add a printbook/audiobook/ebook based on the input fields
+* the books are added to the static instance in the bookcatalog class because the controller class is reinitialized
+* whenever scenes change*/
     public void addPrintBook(ActionEvent event) {
         try {
 
@@ -194,22 +197,19 @@ public class Controller {
             System.err.println("Error adding book: " + e.getMessage());
         }
     }
+    /*this assigns column names to the table/column through the fxid */
     public void initializeBookTable() {
-        // Bind columns to Book properties
+
         titleColumn.setCellValueFactory(new PropertyValueFactory<>("title"));
         authorColumn.setCellValueFactory(new PropertyValueFactory<>("author"));
         isbnColumn.setCellValueFactory(new PropertyValueFactory<>("isbn"));
         detailsColumn.setCellValueFactory(new PropertyValueFactory<>("details"));
 
-        // Populate TableView with books from the catalog
+        /*this tells the table what to display using the list returned by getbooks()*/
         bookTableView.setItems(FXCollections.observableArrayList(books.getBooks()));
     }
 
-    public void displayBooksTest() {
-        books.addBook(new PrintBook("222","2222","2222",2222));
 
-        System.out.println(books.getBooks().size());
-    }
 
 
 }
