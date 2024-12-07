@@ -67,7 +67,7 @@ public class Controller {
 
     }
 /*these function corresponds to the button to add a printbook/audiobook/ebook based on the input fields
-* the books are added to the static instance in the bookcatalog class because the controller class is reinitialized
+* the books are added to the static instance(singleton) in the bookcatalog class because the controller class is reinitialized
 * whenever scenes change*/
     public void addPrintBook(ActionEvent event) {
         try {
