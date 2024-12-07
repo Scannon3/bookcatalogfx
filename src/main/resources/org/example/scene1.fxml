@@ -22,11 +22,6 @@
             <Font size="18.0" />
          </font>
       </Button>
-      <Button layoutX="381.0" layoutY="123.0" mnemonicParsing="false" onAction="#displayBooksTest" text="Search Book">
-         <font>
-            <Font size="18.0" />
-         </font>
-      </Button>
       <Button layoutX="201.0" layoutY="221.0" mnemonicParsing="false" onAction="#switchScene3" text="Display Books">
          <font>
             <Font size="24.0" />

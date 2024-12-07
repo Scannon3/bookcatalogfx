@@ -100,7 +100,7 @@ public class Controller {
 
 
             books.addBook(new PrintBook(title, author, isbn, pages));
-            System.out.println(books.getBooks().size());
+
 
 
 
