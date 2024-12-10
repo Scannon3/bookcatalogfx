@@ -1,31 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.text.Font?>
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.Controller">
    <children>
-      <Label layoutX="158.0" layoutY="14.0" text="Book Catalog">
-         <font>
-            <Font size="48.0" />
-         </font>
-      </Label>
-      <Button layoutX="81.0" layoutY="123.0" mnemonicParsing="false" onAction="#switchScene2" text="Add Book">
-         <font>
-            <Font size="18.0" />
-         </font>
-      </Button>
-      <Button layoutX="214.0" layoutY="123.0" mnemonicParsing="false" text="Remove Book">
-         <font>
-            <Font size="18.0" />
-         </font>
-      </Button>
-      <Button layoutX="201.0" layoutY="221.0" mnemonicParsing="false" onAction="#switchScene3" text="Display Books">
-         <font>
-            <Font size="24.0" />
-         </font>
-      </Button>
+      <TableView fx:id="bookTableView" layoutX="-1.0" prefHeight="297.0" prefWidth="600.0" AnchorPane.bottomAnchor="103.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <columns>
+          <TableColumn fx:id="titleColumn" prefWidth="194.0" text="Title" />
+          <TableColumn fx:id="authorColumn" prefWidth="157.0" text="Author" />
+            <TableColumn fx:id="isbnColumn" prefWidth="164.0" text="ISBN" />
+            <TableColumn fx:id="detailsColumn" prefWidth="84.0" text="Size" />
+        </columns>
+      </TableView>
+      <Button layoutX="-2.0" layoutY="297.0" mnemonicParsing="false" onAction="#switchScene2" prefHeight="25.0" prefWidth="114.0" text="Add Book" />
+      <Button layoutX="-1.0" layoutY="322.0" mnemonicParsing="false" onAction="#RemoveBook" prefHeight="25.0" prefWidth="114.0" text="Remove Book" />
+      <Button layoutX="-1.0" layoutY="347.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="114.0" text="Button" />
+      <TextField fx:id="removeField" layoutX="112.0" layoutY="322.0" promptText="ISBN to remove" />
    </children>
 </AnchorPane>

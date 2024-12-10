@@ -19,9 +19,16 @@ public class BookCatalog {
         return instance;
     }
 
-    public void addBook(Book book) {
+    public boolean addBook(Book book) {
+        for (Book b : books) {
+            if (b.getIsbn().equals(book.getIsbn())) {
+                return false;
+            }
+        }
         books.add(book);
+        return true;
     }
+
 
     public List<Book> getBooks() {
         return books;

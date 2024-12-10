@@ -12,7 +12,8 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 import javafx.collections.FXCollections;
 import javafx.scene.control.TableView;
-
+import javafx.scene.control.Label;
+import javax.swing.*;
 import java.io.IOException;
 
 public class Controller {
@@ -39,25 +40,16 @@ public class Controller {
     private TextField printTitleField, printAuthorField, printIsbnField, printPagesField,
             audioTitleField, audioAuthorField, audioIsbnField, audioDurationField,
             ebookTitleField, ebookAuthorField, ebookIsbnField, ebookSizeField;
+
+    @FXML
+    private TextField removeField;  // for the removebook text field
+
+
+
 /*scene one is the main scene*/
+
     public void switchScene1(ActionEvent event) throws IOException {
         loader = new FXMLLoader(getClass().getResource("/org/example/scene1.fxml"));
-        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        scene = new Scene(loader.load());
-        stage.setScene(scene);
-        stage.show();
-    }
-/*scene two is the addbook scene*/
-    public void switchScene2(ActionEvent event) throws IOException {
-        loader = new FXMLLoader(getClass().getResource("/org/example/scene2.fxml"));
-        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        scene = new Scene(loader.load());
-        stage.setScene(scene);
-        stage.show();
-    }
-    /*scene three is the display books scene*/
-    public void switchScene3(ActionEvent event) throws IOException {
-        loader = new FXMLLoader(getClass().getResource("/org/example/scene3.fxml"));
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         scene = new Scene(loader.load());
         Controller controller = loader.getController();
@@ -66,10 +58,39 @@ public class Controller {
         stage.show();
 
     }
+
+
+/*scene two is the addbook scene*/
+    public void switchScene2(ActionEvent event) throws IOException {
+        loader = new FXMLLoader(getClass().getResource("/org/example/scene2.fxml"));
+        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        scene = new Scene(loader.load());
+        stage.setScene(scene);
+        stage.show();
+    }
+
+
+    /*public void switchScene4(ActionEvent event) throws IOException {
+        loader = new FXMLLoader(getClass().getResource("/org/example/scene4.fxml"));
+        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        scene = new Scene(loader.load());
+        stage.setScene(scene);
+        stage.show();
+
+    }*/
+    /*public void switchScene5(ActionEvent event) throws IOException {
+        loader = new FXMLLoader(getClass().getResource("/org/example/scene1.fxml"));
+        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        scene = new Scene(loader.load());
+        stage.setScene(scene);
+        stage.show();
+    }*/
+
 /*these function corresponds to the button to add a printbook/audiobook/ebook based on the input fields
 * the books are added to the static instance(singleton) in the bookcatalog class because the controller class is reinitialized
 * whenever scenes change*/
-    public void addPrintBook(ActionEvent event) {
+    public void addPrintBook(ActionEvent event) throws IOException {
+        boolean added;
         try {
 
             String title = printTitleField.getText();
@@ -98,8 +119,10 @@ public class Controller {
                 throw new IllegalArgumentException("Pages must be a valid integer", e);
             }
 
-
-            books.addBook(new PrintBook(title, author, isbn, pages));
+            added = books.addBook(new PrintBook(title, author, isbn, pages));
+            if (!added) {
+             System.out.println("ISBN already exists inside book catalog");
+            }
 
 
 
@@ -112,8 +135,9 @@ public class Controller {
 
             System.err.println("Error adding book: " + e.getMessage());
         }
+        switchScene1(event);
     }
-    public void addAudioBook(ActionEvent event) {
+    public void addAudioBook(ActionEvent event) throws IOException {
         try {
 
             String title = audioTitleField.getText();
@@ -154,8 +178,9 @@ public class Controller {
 
             System.err.println("Error adding book: " + e.getMessage());
         }
+        switchScene1(event);
     }
-    public void addEBook(ActionEvent event) {
+    public void addEBook(ActionEvent event) throws IOException {
         try {
 
             String title = ebookTitleField.getText();
@@ -196,6 +221,7 @@ public class Controller {
 
             System.err.println("Error adding book: " + e.getMessage());
         }
+        switchScene1(event);
     }
     /*this assigns column names to the table/column through the fxid */
     public void initializeBookTable() {
@@ -209,7 +235,11 @@ public class Controller {
         bookTableView.setItems(FXCollections.observableArrayList(books.getBooks()));
     }
 
-
+    public void RemoveBook(ActionEvent event) throws IOException {
+        String isbn = removeField.getText();
+        books.removeBook(isbn);
+        switchScene1(event);
+    }
 
 
 }
