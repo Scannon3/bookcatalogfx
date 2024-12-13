@@ -15,6 +15,8 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.Label;
 import javax.swing.*;
 import java.io.IOException;
+import javafx.scene.control.RadioButton;
+import javafx.scene.control.ToggleGroup;
 
 public class Controller {
     private Stage stage;
@@ -35,7 +37,7 @@ public class Controller {
     private TableColumn<Book, String> detailsColumn;
 
 
-/*coresponds to the fxid of the controls in scene 2(addbook) fxml file*/
+/*coresponds to the fxid of the controls in (addbook) fxml file*/
     @FXML
     private TextField printTitleField, printAuthorField, printIsbnField, printPagesField,
             audioTitleField, audioAuthorField, audioIsbnField, audioDurationField,
@@ -43,6 +45,10 @@ public class Controller {
 
     @FXML
     private TextField removeField;  // for the removebook text field
+
+    /*corresponds to the bubble selectors for book type*/
+    @FXML
+    private TextField searchTitle; //for the search title field
 
 
 
@@ -61,8 +67,9 @@ public class Controller {
 
 
 /*scene two is the addbook scene*/
-    public void switchScene2(ActionEvent event) throws IOException {
-        loader = new FXMLLoader(getClass().getResource("/org/example/scene2.fxml"));
+    public void addBook_Choice(ActionEvent event) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/example/addBook_Choice.fxml"));
+
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         scene = new Scene(loader.load());
         stage.setScene(scene);
@@ -70,21 +77,28 @@ public class Controller {
     }
 
 
-    /*public void switchScene4(ActionEvent event) throws IOException {
-        loader = new FXMLLoader(getClass().getResource("/org/example/scene4.fxml"));
+    public void addAudioScene(ActionEvent event) throws IOException {
+        loader = new FXMLLoader(getClass().getResource("/org/example/addAudioScene.fxml"));
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         scene = new Scene(loader.load());
         stage.setScene(scene);
         stage.show();
 
-    }*/
-    /*public void switchScene5(ActionEvent event) throws IOException {
-        loader = new FXMLLoader(getClass().getResource("/org/example/scene1.fxml"));
+    }
+    public void addEBookScene(ActionEvent event) throws IOException {
+        loader = new FXMLLoader(getClass().getResource("/org/example/addEBookScene.fxml"));
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         scene = new Scene(loader.load());
         stage.setScene(scene);
         stage.show();
-    }*/
+    }
+    public void addPrintScene(ActionEvent event) throws IOException {
+        loader = new FXMLLoader(getClass().getResource("/org/example/addPrintScene.fxml"));
+        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        scene = new Scene(loader.load());
+        stage.setScene(scene);
+        stage.show();
+    }
 
 /*these function corresponds to the button to add a printbook/audiobook/ebook based on the input fields
 * the books are added to the static instance(singleton) in the bookcatalog class because the controller class is reinitialized
@@ -234,12 +248,30 @@ public class Controller {
         /*this tells the table what to display using the list returned by getbooks()*/
         bookTableView.setItems(FXCollections.observableArrayList(books.getBooks()));
     }
-
+    /*removes book based on isbn in textfield*/
     public void RemoveBook(ActionEvent event) throws IOException {
         String isbn = removeField.getText();
         books.removeBook(isbn);
         switchScene1(event);
     }
+    /*searches and displays books based on titles that match the string sequence*/
+    public void searchBooks(ActionEvent event) {
+        String searchQuery = searchTitle.getText().toLowerCase();
+
+        if (searchQuery == null || searchQuery.trim().isEmpty()) {
+            bookTableView.setItems(FXCollections.observableArrayList(books.getBooks())); //if empty display all books
+            return;
+        }
+
+        var filteredBooks = books.getBooks().stream()
+                .filter(book -> book.getTitle().toLowerCase().contains(searchQuery))      //create list of books that match searchquery
+                .toList();
+
+
+        bookTableView.setItems(FXCollections.observableArrayList(filteredBooks));         //display filtered list
+    }
+
+
 
 
 }
