@@ -9,7 +9,7 @@ public class MainApp extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/example/scene1.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/example/mainMenu.fxml"));
         Scene scene = new Scene(loader.load());
         primaryStage.setTitle("Book Catalog");
         primaryStage.setScene(scene);
