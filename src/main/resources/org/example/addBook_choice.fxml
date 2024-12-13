@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #7e8d85;" stylesheets="@addBook_choice.css" VBox.vgrow="ALWAYS" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.Controller">
+
+
+    <children>
+      <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" style="-fx-font-size: 40; -fx-background-color: A2E3C4;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+         <children>
+            <Label style="-fx-font-size: 40; -fx-text-fill: 3C493F; -fx-font-family: Georgia;" text="Select Book Type" />
+         </children>
+         <VBox.margin>
+            <Insets />
+         </VBox.margin>
+      </HBox>
+      <VBox alignment="CENTER" fillWidth="false" prefHeight="200.0" prefWidth="100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="100.0" AnchorPane.rightAnchor="100.0" AnchorPane.topAnchor="100.0">
+         <children>
+            <VBox spacing="40.0" style="-fx-text-fill: F0F7F4;">
+               <children>
+                  <RadioButton fx:id="optEBook" mnemonicParsing="false" style="-fx-font-size: 20; -fx-text-fill: F0F7F4; -fx-font-family: Georgia;" text="Ebook" />
+                  <RadioButton fx:id="optPrintBook" mnemonicParsing="false" style="-fx-font-size: 20; -fx-text-fill: F0F7F4; -fx-font-family: Georgia;" text="Print Book" />
+                  <RadioButton fx:id="optAudioBook" mnemonicParsing="false" style="-fx-font-size: 20; -fx-text-fill: F0F7F4; -fx-font-family: Georgia;" text="Audiobook" />
+               </children>
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin>
+            </VBox>
+            <Button mnemonicParsing="false" style="-fx-background-color: F0F7F4; -fx-font-family: Georgia;" text="Submit">
+               <VBox.margin>
+                  <Insets top="40.0" />
+               </VBox.margin></Button>
+         </children></VBox>
+
+    </children>
+
+</AnchorPane>
