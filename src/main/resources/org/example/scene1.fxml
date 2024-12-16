@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="517.0" prefWidth="653.0" style="-fx-background-color: A2E3C4;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.Controller">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="519.0" prefWidth="653.0" style="-fx-background-color: A2E3C4;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.Controller">
    <children>
       <TableView fx:id="bookTableView" layoutX="-1.0" prefHeight="404.0" prefWidth="653.0" style="-fx-background-color: #7e8d85;" AnchorPane.bottomAnchor="113.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <columns>
@@ -23,16 +23,16 @@
          <font>
             <Font size="18.0" />
          </font></Button>
-      <Button layoutY="443.0" mnemonicParsing="false" onAction="#RemoveBook" prefHeight="35.0" prefWidth="149.0" text="Remove Book">
+      <Button layoutY="478.0" mnemonicParsing="false" onAction="#RemoveBook" prefHeight="19.0" prefWidth="149.0" text="Remove Book">
          <font>
             <Font size="18.0" />
          </font></Button>
-      <Button layoutY="478.0" mnemonicParsing="false" onAction="#searchBooks" prefHeight="35.0" prefWidth="149.0" text="Search Book">
+      <Button layoutY="443.0" mnemonicParsing="false" onAction="#searchBooks" prefHeight="20.0" prefWidth="149.0" text="Search Book">
          <font>
             <Font size="18.0" />
          </font></Button>
-      <TextField fx:id="removeField" layoutX="168.0" layoutY="443.0" prefHeight="35.0" prefWidth="114.0" promptText="ISBN to remove" />
-      <TextField fx:id="searchTitle" layoutX="168.0" layoutY="480.0" prefHeight="35.0" prefWidth="114.0" promptText="Title to search" />
+      <TextField fx:id="removeField" layoutX="168.0" layoutY="486.0" prefHeight="31.0" prefWidth="114.0" promptText="ISBN to remove" />
+      <TextField fx:id="searchTitle" layoutX="168.0" layoutY="445.0" prefHeight="35.0" prefWidth="114.0" promptText="Title to search" />
       <Button layoutX="387.0" layoutY="413.0" mnemonicParsing="false" onAction="#markReadScene" prefHeight="40.0" prefWidth="149.0" text="Mark Read">
          <font>
             <Font size="18.0" />
@@ -43,7 +43,7 @@
             <Font size="18.0" />
          </font>
       </Button>
-      <TextField fx:id="openField" layoutX="168.0" layoutY="407.0" prefHeight="35.0" prefWidth="114.0" promptText="Title to Open" />
+      <TextField fx:id="openField" layoutX="168.0" layoutY="407.0" prefHeight="35.0" prefWidth="114.0" promptText="Title to open" />
    </children>
    <effect>
       <Blend />
