@@ -14,7 +14,9 @@ public class MainApp extends Application {
         primaryStage.setTitle("Book Catalog");
         primaryStage.setScene(scene);
         primaryStage.show();
+
     }
+
 
     public static void main(String[] args) {
         launch(args);

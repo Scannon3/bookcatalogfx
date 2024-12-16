@@ -4,13 +4,16 @@ public abstract class Book {
     private String title;
     private String author;
     private String isbn;
+    private String bookContent = "This is the books content";
     private boolean isRead;
+
 
     public Book(String title, String author, String isbn) {
         this.title = title;
         this.author = author;
         this.isbn = isbn;
         this.isRead = false;
+        this.bookContent = "";
     }
 
     // Getters and Setters
@@ -46,6 +49,12 @@ public abstract class Book {
         this.isRead = isRead;
     }
 
-    
+    public void setBookContent(String bookContent) {
+        this.bookContent = bookContent;
+    }
+    public String getBookContent() {
+        return bookContent;
+    }
+
     public abstract String getDetails();
 }

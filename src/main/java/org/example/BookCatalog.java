@@ -11,6 +11,9 @@ public class BookCatalog {
 
     private BookCatalog() {
         books = new ArrayList<>();
+        books.add(new PrintBook("To Kill a Mockingbird","Harper lee","1234567",376));
+        books.add(new AudioBook("The Hitchhiker's Guide to the Galaxy","Douglas Adams","1234568",500));
+        books.add(new EBook("The Great Gatsby","F. Scott Fitzgerald","1234569",1024));
     }
     public static BookCatalog getInstance(){
         if(instance == null) {
@@ -63,6 +66,15 @@ public class BookCatalog {
         if (book != null) {
             book.setRead(true); // Mark the book as read
             System.out.println("Marked as read: " + title);
+        } else {
+            System.out.println("Book not found: " + title);
+        }
+    }
+    public void markNotRead(String title) {
+        Book book = searchBook(title); // Use the searchBook method to find the book
+        if (book != null) {
+            book.setRead(false); // Mark the book as read
+            System.out.println("Marked as not read: " + title);
         } else {
             System.out.println("Book not found: " + title);
         }

@@ -5,18 +5,16 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Scene;
-import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TextField;
+import javafx.scene.control.TextArea;
+import javafx.scene.control.Label;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 import javafx.collections.FXCollections;
 import javafx.scene.control.TableView;
-import javafx.scene.control.Label;
-import javax.swing.*;
+
 import java.io.IOException;
-import javafx.scene.control.RadioButton;
-import javafx.scene.control.ToggleGroup;
 
 public class Controller {
     private Stage stage;
@@ -35,6 +33,8 @@ public class Controller {
     private TableColumn<Book, String> isbnColumn;
     @FXML
     private TableColumn<Book, String> detailsColumn;
+    @FXML
+    private TableColumn<Book, String> readColumn;
 
 
 /*coresponds to the fxid of the controls in (addbook) fxml file*/
@@ -49,6 +49,20 @@ public class Controller {
     /*corresponds to the bubble selectors for book type*/
     @FXML
     private TextField searchTitle; //for the search title field
+
+    @FXML
+    private TextField markAsRead;
+
+    @FXML
+    private TextField openField;
+
+    @FXML
+    private Label titleDisplay;
+
+    @FXML
+    private Label pageDisplay;
+
+
 
 
 
@@ -98,6 +112,25 @@ public class Controller {
         scene = new Scene(loader.load());
         stage.setScene(scene);
         stage.show();
+    }
+    public void markReadScene(ActionEvent event) throws IOException {
+        loader = new FXMLLoader(getClass().getResource("/org/example/markReadScene.fxml"));
+        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        scene = new Scene(loader.load());
+        stage.setScene(scene);
+        stage.show();
+
+    }
+
+    public void bookIsOpenScene(ActionEvent event,Book book) throws IOException {
+        loader = new FXMLLoader(getClass().getResource("/org/example/bookIsOpenScene.fxml"));
+        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        scene = new Scene(loader.load());
+        Controller controller = loader.getController();
+        controller.initializeBookPage(book);
+        stage.setScene(scene);
+        stage.show();
+
     }
 
 /*these function corresponds to the button to add a printbook/audiobook/ebook based on the input fields
@@ -237,16 +270,24 @@ public class Controller {
         }
         switchScene1(event);
     }
-    /*this assigns column names to the table/column through the fxid */
+
     public void initializeBookTable() {
 
         titleColumn.setCellValueFactory(new PropertyValueFactory<>("title"));
         authorColumn.setCellValueFactory(new PropertyValueFactory<>("author"));
         isbnColumn.setCellValueFactory(new PropertyValueFactory<>("isbn"));
         detailsColumn.setCellValueFactory(new PropertyValueFactory<>("details"));
+        readColumn.setCellValueFactory(new PropertyValueFactory<>("read"));
 
         /*this tells the table what to display using the list returned by getbooks()*/
         bookTableView.setItems(FXCollections.observableArrayList(books.getBooks()));
+    }
+
+    public void initializeBookPage(Book book) {
+        titleDisplay.setText(book.getTitle());
+        book.setBookContent("This is the books content");
+        pageDisplay.setText(book.getBookContent());
+
     }
     /*removes book based on isbn in textfield*/
     public void RemoveBook(ActionEvent event) throws IOException {
@@ -269,6 +310,26 @@ public class Controller {
 
 
         bookTableView.setItems(FXCollections.observableArrayList(filteredBooks));         //display filtered list
+    }
+
+    public void markRead(ActionEvent event) throws IOException {
+
+        String readTitle = markAsRead.getText();
+        books.markAsRead(readTitle);
+        switchScene1(event);
+    }
+    public void markNotRead(ActionEvent event) throws IOException {
+
+        String readTitle = markAsRead.getText();
+        books.markNotRead(readTitle);
+        switchScene1(event);
+    }
+    public void openBook(ActionEvent event) throws IOException{
+        Book bookToOpen = books.searchBook(openField.getText());
+        if(bookToOpen != null) {
+            bookIsOpenScene(event, bookToOpen);
+        }
+
     }
 
 

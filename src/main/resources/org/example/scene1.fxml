@@ -10,15 +10,16 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="517.0" prefWidth="653.0" style="-fx-background-color: A2E3C4;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.Controller">
    <children>
-      <TableView fx:id="bookTableView" layoutX="-1.0" prefHeight="287.0" prefWidth="600.0" style="-fx-background-color: #7e8d85;" AnchorPane.bottomAnchor="113.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <TableView fx:id="bookTableView" layoutX="-1.0" prefHeight="404.0" prefWidth="653.0" style="-fx-background-color: #7e8d85;" AnchorPane.bottomAnchor="113.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <columns>
           <TableColumn fx:id="titleColumn" prefWidth="194.0" text="Title" />
           <TableColumn fx:id="authorColumn" prefWidth="157.0" text="Author" />
-            <TableColumn fx:id="isbnColumn" prefWidth="164.0" text="ISBN" />
-            <TableColumn fx:id="detailsColumn" prefWidth="84.0" text="Size" />
+            <TableColumn fx:id="isbnColumn" prefWidth="132.0" text="ISBN" />
+            <TableColumn fx:id="detailsColumn" prefWidth="91.0" text="Size" />
+            <TableColumn fx:id="readColumn" prefWidth="95.0" text="Read" />
         </columns>
       </TableView>
-      <Button layoutY="404.0" mnemonicParsing="false" onAction="#addBook_Choice" prefHeight="40.0" prefWidth="149.0" text="Add Book">
+      <Button layoutX="387.0" layoutY="462.0" mnemonicParsing="false" onAction="#addBook_Choice" prefHeight="40.0" prefWidth="149.0" text="Add Book">
          <font>
             <Font size="18.0" />
          </font></Button>
@@ -32,6 +33,17 @@
          </font></Button>
       <TextField fx:id="removeField" layoutX="168.0" layoutY="443.0" prefHeight="35.0" prefWidth="114.0" promptText="ISBN to remove" />
       <TextField fx:id="searchTitle" layoutX="168.0" layoutY="480.0" prefHeight="35.0" prefWidth="114.0" promptText="Title to search" />
+      <Button layoutX="387.0" layoutY="413.0" mnemonicParsing="false" onAction="#markReadScene" prefHeight="40.0" prefWidth="149.0" text="Mark Read">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Button>
+      <Button layoutY="404.0" mnemonicParsing="false" onAction="#openBook" prefHeight="40.0" prefWidth="149.0" text="Open Book">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Button>
+      <TextField fx:id="openField" layoutX="168.0" layoutY="407.0" prefHeight="35.0" prefWidth="114.0" promptText="Title to Open" />
    </children>
    <effect>
       <Blend />
